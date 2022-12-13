@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Измениние товара</h2>
+<form method="post">
+    {% csrf_token %}
+    <p>
+        <label>Введите название товара</label><br>
+        <input type="text" name="name"value="{{ product.name }}" />
+    </p>
+    <p>
+        <label>Введите Цену</label><br>
+        <input type="number" name="price" value="{{ product.price }}" />
+    </p>
+    <p>
+        <label>Введите Компанию</label><br>
+        <select name="company">
+            {% for company in companies %}
+            <option value="{{ company.id }}"
+                {% if company.id == product.company_id %}
+                selected
+                {% endif %}
+            >{{ company.name }}</option>
+        {% endfor %}
+            </option>
+        </select>
+    </p>
+        <input type="submit" value="Сохранить">
+    </form>
+</body>
+</html>
